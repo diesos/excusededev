@@ -49,7 +49,9 @@ const Main = () => {
   return (
     <Wrapper>
       <Header />
+
       <div className="bubble shadow large bottom">
+
         <TypeAnimation
           sequence={["Bonjour, peut-tu m'aider à trouver une excuse ?", 3000]}
           wrapper="span"
