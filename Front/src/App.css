@@ -47,19 +47,17 @@ ul {
 
 .hero {
   position: absolute;
-  height: clamp(250px, 50vh, 600px); /* 70% de la hauteur de l'écran */
-  width: clamp(150px, 70vw, 600px);  /* 70% de la largeur de l'écran */
-  right: clamp(5px, 5vw, 10%);
-  bottom: 0px;
+  height: clamp(200px, 50vh, 500px); /* Hauteur dynamique */
+  width: clamp(40px, 50vw, 400px);  /* Largeur dynamique */
+  aspect-ratio: 4 / 3; /* Ratio fixe pour les proportions */
+  bottom: 0; /* Fixé au bas de l'écran */
 }
+
+/* Pour les écrans de moins de 768px de largeur */
 
 .bubble {
   position: absolute;
-  right: 0;
-  left: clamp(5px, 9vw, 30%);;
-  right: 0;
-  display: inline-block;
-  margin: 20px;
+  margin-left: clamp(30px, 5vw, 30%);
   text-align: center;
   font-family: "Press Start 2P", cursive;
   font-size: clamp(5px, 5vw, 36px);
@@ -89,26 +87,50 @@ ul {
   font-family: "Press Start 2P", cursive;
 
 }
-.bubble.top::after {
+/* .bubble.top::after {
   height: 4px;
   width: 4px;
   top: -8px;
   left: 32px;
   box-shadow: 0 -4px #000, 0 -8px #000, 0 -12px #000, 0 -16px #000, -4px -12px #000, -8px -8px #000, -12px -4px #000, -4px -4px #fff, -8px -4px #fff, -4px -8px #fff, -4px 0 #fff, -8px 0 #fff, -12px 0 #fff;
-}
-.bubble.right::after {
-  height: 4px;
-  width: 4px;
-  top: 84px;
-  right: -8px;
-  background: white;
-  box-shadow: 4px -4px #fff, 4px 0 #fff, 8px 0 #fff, 0 -8px #fff, 4px 4px #000, 8px 4px #000, 12px 4px #000, 16px 4px #000, 12px 0 #000, 8px -4px #000, 4px -8px #000, 0 -4px #fff;
-}
+} */
+
 .bubble.bottom::after {
   height: 4px;
   width: 4px;
   bottom: -8px;
-  left: 32px;
+  right: 32px;
   box-shadow: 0 4px #000, 0 8px #000, 0 12px #000, 0 16px #000, -4px 12px #000, -8px 8px #000, -12px 4px #000, -4px 4px #fff, -8px 4px #fff, -4px 8px #fff, -4px 0 #fff, -8px 0 #fff, -12px 0 #fff;
 }
 
+@media (max-width: 768px) {
+  .hero {
+    left: 50%;
+    transform: translateX(-50%); /* Centrer horizontalement */
+    right: auto; /* Désactiver l'alignement à droite */
+  }
+  .bubble {
+    right: auto; /* Aligné à droite pour les grands écrans */
+    left: auto; /* Désactiver l'alignement à gauche */
+  }
+}
+
+/* Pour les écrans larges (PC), optionnel si vous avez besoin d'ajustements spécifiques */
+@media (min-width: 769px) {
+  .hero {
+    right: 0; /* Aligné à droite pour les grands écrans */
+    left: auto; /* Désactiver l'alignement à gauche */
+  }
+  .bubble {
+    margin-right: 10%;
+    right: 10%; /* Aligné à droite pour les grands écrans */
+    left: auto; /* Désactiver l'alignement à gauche */
+  }
+}
+
+.generate-btn{
+  margin-top: 20px;
+  padding: 20px;
+  border-radius: 8px;
+
+}
