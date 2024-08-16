@@ -2,7 +2,7 @@ import axios from './axios'
 
 const RandomExcuse = async() => {
 	try {
-		const res = await axios.get("/excuse/random")
+		const res = await axios.get("http://localhost/excuse/random/")
 		return res.data;
 	} catch(error) {
 		console.error('Error fetching excuses', error);

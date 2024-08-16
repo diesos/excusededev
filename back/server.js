@@ -8,7 +8,7 @@ const corsOption = require("./config/corsOption")
 const PORT = 8000;
 
 app.use("/excuse", excuseRoute);
-app.use(cors());
+app.use(cors(corsOption));
 app.get("/", (req, res) => {
   res.send("Hello world");
 });
