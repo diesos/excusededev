@@ -1,8 +1,5 @@
 const ButtonGenerate = ({addExcuse, buttonTime, onClick}) => {
 
-	console.log(addExcuse);
-
-
 	return (
 		<>
 		{buttonTime &&

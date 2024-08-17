@@ -93,7 +93,7 @@ const Main = () => {
                 </div>
               )}
               {/* //TEXTGENERATION */}
-              <TextGen tag={tag} excuse={excuse} />
+              <TextGen tag={tag} excuse={excuse} addExcuse={addExcuse} />
             </>
           )}
         </div>

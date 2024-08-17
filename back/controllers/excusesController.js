@@ -1,4 +1,5 @@
 const excuses = require("../excuses.json");
+const fs = require("fs")
 
 const getExcuse = async (req, res) => {
   const { id } = req.params;
@@ -53,4 +54,41 @@ const randomExcuse = async(req, res) => {
 		});
 	  }
 }
-module.exports = { getExcuse, randomExcuse };
+
+const postExcuse = async(req, res)=> {
+	try {
+	const data = fs.readFileSync("../excusestest.json") // Pour test.
+	const object = JSON.parse(data);
+	const length = object.length;
+	const index = length > 0 ? data[length - 1].http_code : 700;
+	const {tag, message} = req.body;
+	if (!tag || !message){
+		return res.status(400).send("Les champs Tag et Message sont requis");
+	}
+	const newData = {
+			http_code: index + 1,
+			tag: tag,
+			message: message
+		}
+	const newData2 = object.push(newData)
+	JSON.stringify(object)
+	fs.writeFileSync("../excusestest.json", JSON.stringify(newData2, null, 2), (err) => {
+		if(err) {
+			throw(err)
+		}
+		console.log("Added with succes")
+	})
+	res.status(201).send({
+		succes: true,
+		message: "Excuse ajoutée avec succès",
+		data: data
+	})
+	} catch(error) {
+		console.error("Error : ", error);
+		res.status(500).send("Error occured while trying to create excuse")
+	}
+
+
+
+}
+module.exports = { getExcuse, randomExcuse, postExcuse};
