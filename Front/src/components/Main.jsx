@@ -1,15 +1,14 @@
 import { useState, useEffect } from "react";
-import styled, { css } from "styled-components";
 import Header from "./Header";
 import myImage from "/ExcuseDev-Avatar.png";
 import { TypeAnimation } from "react-type-animation";
 import RandomExcuse from "../services/RandomExcuse";
+import CircularProgress from '@mui/material/CircularProgress';
 
-const Wrapper = styled.section`
-  height: 100%;
-`;
+
 const Main = () => {
   const [buttonTime, setButtonTime] = useState(false);
+  const [circular, setCircular] = useState(false)
   const [excuse, setExcuse] = useState('');
   const [tag, setTag] = useState('');
   const [error, setError] = useState(null);
@@ -18,9 +17,23 @@ const Main = () => {
   useEffect(() => {
     const timer = setTimeout(() => {
       setButtonTime(true);
-    }, 3100);
+    }, 1100);
     return () => clearTimeout(timer);
   }, []);
+
+  const timeHandler = () => {
+    setCircular(true);
+    const timer = setTimeout(() => {
+      setCircular(false);
+    }, 1700);
+    const waitingFetch = setTimeout(() => {
+      fetchExcuse();
+    }, 600);
+    return () => {
+      clearTimeout(timer);
+      clearTimeout(waitingFetch);
+    };
+  }
 
 
   const fetchExcuse = async () => {
@@ -47,7 +60,7 @@ const Main = () => {
   };
 
   return (
-    <Wrapper>
+<>
       <Header />
 
       <div className="bubble shadow large bottom">
@@ -55,29 +68,47 @@ const Main = () => {
         <TypeAnimation
           sequence={["Bonjour, peut-tu m'aider à trouver une excuse ?", 3000]}
           wrapper="span"
-          speed={50}
+          speed={80}
           style={{ fontSize: "2em", display: "inline-block" }}
           repeat={Infinity}
           className="animated-text"
         />
         {buttonTime && (
-          <button className="generate-btn" onClick={fetchExcuse}>
+          <button className="generate-btn" onClick={timeHandler}>
             Generate an Excuse
           </button>
         )}
         <div>
-          {loading && <p></p>}
+
           {error && <p>{error}</p>}
-          {!loading && !error && (
+          {!loading && !error &&  (
             <>
-              <p>Object: {tag}</p>
-              <p>Excuse: {excuse}</p>
+            {circular  &&
+            <div className="circular-progress">
+              <CircularProgress />
+              </div>}
+                    <TypeAnimation
+          sequence={[`Object: ${tag}`, 500]}
+          wrapper="span"
+          speed={70}
+          style={{ marginTop: "2em", display: "inline-block" }}
+          className="animated-text"
+          key={tag}
+        />
+                    <TypeAnimation
+          sequence={[`Excuse:  ${excuse}`, 500]}
+          wrapper="span"
+          speed={60}
+          style={{marginTop: "2em", display: "inline-block" }}
+          className="animated-text"
+          key={excuse}
+        />
             </>
           )}
         </div>
       </div>
       <img className="hero" src={myImage}></img>
-    </Wrapper>
+    </>
   );
 };
 
