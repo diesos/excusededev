@@ -14,15 +14,19 @@ const NavContainer = styled.nav`
 
 
 
-const Header = () => {
+const Header = ({setAddExcuse}) => {
+
 	return(
 		<NavContainer>
 			<HeadNav>
 				Excuse De Dev
 			</HeadNav>
 			<ul>
-				<li>Accueil</li>
-				<li>À propos</li>
+				<li><a onClick={(e) => {
+					e.preventDefault();
+					setAddExcuse(Value => !Value)
+					}}>Ajouter/Générer Une Excuse</a>
+				</li>
 			</ul>
 			</NavContainer>
 	)
