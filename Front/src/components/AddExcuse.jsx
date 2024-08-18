@@ -1,5 +1,6 @@
 import {useState} from 'react'
 import PostExcuse from '../services/addExcuse'
+import axios from 'axios'
 
 const AddExcuse = () => {
 	const [succesMessage, setSuccesMessage] = useState(null)
@@ -23,10 +24,16 @@ const AddExcuse = () => {
 		const data = {
 			tag: formData.tag,
 			message: formData.message,
-		};
-
+		}
+		console.log("handleSubmit")
 		try{
-			const response = PostExcuse(data);
+				const res = await axios.post("http://localhost:8000/excuse/create/", data)
+				setSuccesMessage(res.data.message);
+
+			} catch(error) {
+				console.error('Error fetching excuses', error);
+				throw error;
+			}
 	}
 
 	return (
