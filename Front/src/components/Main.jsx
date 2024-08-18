@@ -5,6 +5,7 @@ import { TypeAnimation } from "react-type-animation";
 import RandomExcuse from "../services/RandomExcuse";
 import ButtonGenerate from "./Button";
 import TextGen from "./TextGen";
+import AddExcuse from "./addExcuse";
 import CircularProgress from "@mui/material/CircularProgress";
 
 const Main = () => {
@@ -16,6 +17,7 @@ const Main = () => {
   const [loading, setLoading] = useState(true);
   const [addExcuse, setAddExcuse] = useState(false);
   const [genExcuse, setGenExcuse] = useState(true);
+
 
   useEffect(() => {
     const timer = setTimeout(() => {
@@ -80,7 +82,7 @@ const Main = () => {
           className="animated-text"
           key={addExcuse}
         />
-
+        {addExcuse && <AddExcuse />}
         <ButtonGenerate onClick={timeHandler} buttonTime={buttonTime} addExcuse = {addExcuse} />
 
         <div>

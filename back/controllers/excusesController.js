@@ -9,7 +9,7 @@ const getExcuse = async (req, res) => {
       (excuse) => excuse.http_code === parseInt(id)
     );
     if (!searchExcuse) {
-      return res.status(404).send("Nothing found !");
+      return res.status(404).send("Pas d'excuse trouvée !");
     }
     res.status(200).send({
       succes: true,
@@ -30,7 +30,7 @@ const randomExcuse = async (req, res) => {
   const validHttp = excuses.filter((excuses) => excuses.http_code);
   //Si pas d'excuses, renvoyer erreur 404
   if (!validHttp) {
-    res.status(404).send("No excuses found.");
+    res.status(404).send("Pas d'excuse trouvée !");
   }
   // Après avoir filtrer les http code existante, génération d'un randomIndex
   const randomIndex = Math.floor(Math.random() * validHttp.length);
