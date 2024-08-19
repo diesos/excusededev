@@ -5,7 +5,7 @@ import { TypeAnimation } from "react-type-animation";
 import RandomExcuse from "../services/RandomExcuse";
 import ButtonGenerate from "./Button";
 import TextGen from "./TextGen";
-import AddExcuse from "./addExcuse";
+import AddExcuse from "./AddExcuse";
 
 const Main = () => {
   const [buttonTime, setButtonTime] = useState(false);
