@@ -34,7 +34,7 @@ const NavBar = ({setAddExcuse}) => {
 			<HeadNav>
 				Excuse De Dev
 			</HeadNav>
--				<ul>
+				<ul>
 				<li>
 					<a onClick={(e) => {
 					e.preventDefault();

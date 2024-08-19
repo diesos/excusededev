@@ -16,7 +16,6 @@ const Main = () => {
   const [loading, setLoading] = useState(true);
   const [addExcuse, setAddExcuse] = useState(false);
 
-
   useEffect(() => {
     const timer = setTimeout(() => {
       setButtonTime(true);
@@ -57,44 +56,49 @@ const Main = () => {
       setTag(newTag);
       setLoading(false);
     } catch (error) {
-      setError("Error fetching activities: " + error.message);
+      setError("Erreur lors de la génération d'excuse : " + error.message);
     }
   };
 
   return (
     <>
-    <NavBar
-      setAddExcuse={setAddExcuse}
-      />
-    <div className="main-container">
-      <div className="bubble shadow large bottom">
-        <TypeAnimation
-          sequence={[addExcuse? "Ajoutons une nouvelle excuse !" : "Bonjour, peut-tu m'aider à trouver une excuse ?", 3000]}
-          wrapper="span"
-          speed={80}
-          style={{ fontSize: "2em", display: "inline-block" }}
-          repeat={Infinity}
-          className="animated-text"
-          key={addExcuse}
-        />
-        {addExcuse && <AddExcuse />}
+      <NavBar setAddExcuse={setAddExcuse} />
+      <div className="main-container">
+        <div className="bubble shadow large bottom">
+          <TypeAnimation
+            sequence={[
+              addExcuse
+                ? "Ajoutons une nouvelle excuse !"
+                : "Bonjour, peut-tu m'aider à trouver une excuse ?",
+              3000,
+            ]}
+            wrapper="span"
+            speed={80}
+            style={{ fontSize: "2em", display: "inline-block" }}
+            repeat={Infinity}
+            className="animated-text"
+            key={addExcuse}
+          />
+          {addExcuse && <AddExcuse />}
 
-        <div>
-          {error && <p>{error}</p>}
-          {!loading && !error && (
-            <>
-
-              {/* //TEXTGENERATION */}
-              <TextGen tag={tag} excuse={excuse} addExcuse={addExcuse} />
-            </>
-          )}
+          <div>
+            {error && <p>{error}</p>}
+            {!loading && !error && (
+              <>
+                {/* //TEXTGENERATION */}
+                <TextGen tag={tag} excuse={excuse} addExcuse={addExcuse} />
+              </>
+            )}
+          </div>
+          <ButtonGenerate
+            onClick={timeHandler}
+            buttonTime={buttonTime}
+            addExcuse={addExcuse}
+            circular={circular}
+          />
         </div>
-        <ButtonGenerate onClick={timeHandler} buttonTime={buttonTime} addExcuse = {addExcuse} circular={circular} />
 
-
-      </div>
-
-      <img className="hero" src={myImage}></img>
+        <img className="hero" src={myImage}></img>
       </div>
     </>
   );
