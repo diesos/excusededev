@@ -1,6 +1,7 @@
 import {useState} from 'react'
 // import PostExcuse from '../services/addExcuse'
 import axios from 'axios'
+import { green } from '@mui/material/colors'
 
 const AddExcuse = () => {
 	const [succesMessage, setSuccesMessage] = useState(null)
@@ -30,21 +31,26 @@ const AddExcuse = () => {
 		console.log("handleSubmit")
 		try{
 				const res = await axios.post("http://localhost:8000/excuse/create/", data)
-				setSuccesMessage(res.data.message);
+				setSuccesMessage(res.data.message );
 				setExcuse(res.data.data)
 
 			} catch(error) {
 				console.error('Error fetching excuses', error);
-				setErrorMessage(res.data)
+				if (error.response)
+					setErrorMessage(error.response.data || "Une erreur est survenu")
+				else if (error.request)
+					setErrorMessage("Network Error: Le serveur est injoignable.")
+				else
+					(error.message)
 				throw error;
 			}
 	}
 
 	return (
-		<>
-	<form
+		<div className="addexcuse-form">
+	<form style={{marginTop: '20px'}}
 	onSubmit={handleSubmit}>
-		<label style={{marginTop: '30px'}} htmlFor="tag">Ajouter un titre à votre excuse</label>
+		<label htmlFor="tag">Ajouter un titre à votre excuse</label>
 	<input
 		type="text"
 		id="id"
@@ -52,7 +58,7 @@ const AddExcuse = () => {
 		value={formData.tag}
 		onChange={handleChange}
 	/>
-		<label style={{marginTop: '30px'}} htmlFor="message">Ajouter une excuse</label>
+		<label  htmlFor="message">Ajouter une excuse</label>
 	<input
 		type="text"
 		id="id2"
@@ -66,19 +72,20 @@ const AddExcuse = () => {
 		</form>
 		{succesMessage &&
 		(<>
-		<p>{succesMessage}</p>
+		<p style={{color: "green"}}>{succesMessage}</p>
+		<p>http_code: {excuse.http_code}</p>
 		<p>Titre: {excuse.tag}</p>
 		<p>Excuse: {excuse.message}</p>
 		</>)}
 
-		{errorMessage && (
+		{!succesMessage && errorMessage && (
 			<>
-			Error : {errorMessage}
+			<p key={errorMessage} style={{color: "red"}}>Error : {errorMessage}</p>
 		</>
 		)
 		}
 
-	</>
+	</div>
 	)
 }
 export default AddExcuse

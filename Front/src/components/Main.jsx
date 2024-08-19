@@ -1,12 +1,11 @@
 import { useState, useEffect } from "react";
-import Header from "./Header";
+import NavBar from "./NavBar";
 import myImage from "/ExcuseDev-Avatar.png";
 import { TypeAnimation } from "react-type-animation";
 import RandomExcuse from "../services/RandomExcuse";
 import ButtonGenerate from "./Button";
 import TextGen from "./TextGen";
 import AddExcuse from "./addExcuse";
-import CircularProgress from "@mui/material/CircularProgress";
 
 const Main = () => {
   const [buttonTime, setButtonTime] = useState(false);
@@ -16,7 +15,6 @@ const Main = () => {
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(true);
   const [addExcuse, setAddExcuse] = useState(false);
-  const [genExcuse, setGenExcuse] = useState(true);
 
 
   useEffect(() => {
@@ -65,14 +63,11 @@ const Main = () => {
 
   return (
     <>
-      <Header
+    <NavBar
       setAddExcuse={setAddExcuse}
       />
-
+    <div className="main-container">
       <div className="bubble shadow large bottom">
-
-
-
         <TypeAnimation
           sequence={[addExcuse? "Ajoutons une nouvelle excuse !" : "Bonjour, peut-tu m'aider à trouver une excuse ?", 3000]}
           wrapper="span"
@@ -83,26 +78,24 @@ const Main = () => {
           key={addExcuse}
         />
         {addExcuse && <AddExcuse />}
-        <ButtonGenerate onClick={timeHandler} buttonTime={buttonTime} addExcuse = {addExcuse} />
 
         <div>
           {error && <p>{error}</p>}
           {!loading && !error && (
             <>
-              {circular && (
-                <div className="circular-progress">
-                  <CircularProgress />
-                </div>
-              )}
+
               {/* //TEXTGENERATION */}
               <TextGen tag={tag} excuse={excuse} addExcuse={addExcuse} />
             </>
           )}
         </div>
+        <ButtonGenerate onClick={timeHandler} buttonTime={buttonTime} addExcuse = {addExcuse} circular={circular} />
+
 
       </div>
 
       <img className="hero" src={myImage}></img>
+      </div>
     </>
   );
 };

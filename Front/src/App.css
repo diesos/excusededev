@@ -1,42 +1,39 @@
 * {
   box-sizing: border-box;
   text-decoration: none;
-
 }
-
-a:link{
-  text-decoration: none;
+a:link {
   color: white;
   cursor: pointer;
 }
-a:visited {
-  text-decoration: none;
+button,
+input,
+optgroup,
+select,
+textarea {
+  font-family: inherit; /* 1 */
+  font-size: 100%; /* 1 */
+  line-height: 1.5; /* 1 */
+  width: 100%;
 }
 
-a:hover {
-  text-decoration: underline;
-
-}
-
-a:active {
-  text-decoration: none;
-}
-
-nav {
-  font-family: "Poppins";
-}
-
-html, body {
-  height: 100%;
-  margin: 0;
-  padding: 0;
-  overflow: hidden; /* Empêche le défilement */
-}
 body {
-  background: radial-gradient(circle at 30% 40%, rgba(0, 255, 136, 0.25) 0%, transparent 60%),
-              radial-gradient(circle at 70% 40%, rgba(136, 0, 255, 0.25) 0%, transparent 60%),
-              radial-gradient(circle at 50% 70%, rgba(0, 136, 255, 0.25) 0%, transparent 60%),
-              #0F0F23;
+  background: radial-gradient(
+      circle at 30% 40%,
+      rgba(0, 255, 136, 0.25) 0%,
+      transparent 60%
+    ),
+    radial-gradient(
+      circle at 70% 40%,
+      rgba(136, 0, 255, 0.25) 0%,
+      transparent 60%
+    ),
+    radial-gradient(
+      circle at 50% 70%,
+      rgba(0, 136, 255, 0.25) 0%,
+      transparent 60%
+    ),
+    #0f0f23;
   min-height: 100vh;
   margin: 0;
   padding: 0;
@@ -60,6 +57,13 @@ body::after {
   pointer-events: none;
 }
 
+html,
+body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  overflow: hidden; /* Empêche le défilement */
+}
 /* Contenu */
 .content {
   position: relative;
@@ -70,17 +74,16 @@ ul {
   display: flex;
   list-style: none;
   align-items: center;
-  gap: 50px;
   margin-right: clamp(5px, 5vw, 10%);
   font-size: clamp(12px, 2vw + 1px, 17px);
 }
 
 .hero {
   position: absolute;
-  height: clamp(200px, 50vh, 500px); /* Hauteur dynamique */
-  width: clamp(40px, 50vw, 400px);  /* Largeur dynamique */
-  aspect-ratio: 4 / 3; /* Ratio fixe pour les proportions */
-  bottom: 0; /* Fixé au bas de l'écran */
+  height: clamp(200px, 50vh, 500px);
+  width: clamp(40px, 50vw, 400px);
+  aspect-ratio: 4 / 2.4;
+  bottom: 0;
 }
 
 /* Pour les écrans de moins de 768px de largeur */
@@ -89,22 +92,20 @@ ul {
   position: absolute;
   margin-left: clamp(30px, 5vw, 30%);
   text-align: center;
+  align-items: center;
   font-family: "Press Start 2P", cursive;
   font-size: clamp(5px, 5vw, 36px);
   line-height: (5px, 2vw, 1.3em);
   background-color: #fff;
   color: #000;
   padding: clamp(5px, 5vw, 10%);
-  box-shadow: 0 -4px #fff, 0 -8px #000, 4px 0 #fff, 4px -4px #000, 8px 0 #000, 0 4px #fff, 0 8px #000, -4px 0 #fff, -4px 4px #000, -8px 0 #000, -4px -4px #000, 4px 4px #000;
+  box-shadow: 0 -4px #fff, 0 -8px #000, 4px 0 #fff, 4px -4px #000, 8px 0 #000,
+    0 4px #fff, 0 8px #000, -4px 0 #fff, -4px 4px #000, -8px 0 #000,
+    -4px -4px #000, 4px 4px #000;
   box-sizing: border-box;
   width: clamp(10%, 5vw, 200px);
 }
 
-.button-container{
-  display: flex;
-  font-size: 20px;
-  justify-content: center;
-}
 .bubble::after {
   content: "";
   display: block;
@@ -112,75 +113,76 @@ ul {
   box-sizing: border-box;
 }
 .bubble.shadow {
-  box-shadow: 0 -4px #fff, 0 -8px #000, 4px 0 #fff, 4px -4px #000, 8px 0 #000, 0 4px #fff, 0 8px #000, -4px 0 #fff, -4px 4px #000, -8px 0 #000, -4px -4px #000, 4px 4px #000, 4px 12px rgba(0, 0, 0, 0.1), 12px 4px rgba(0, 0, 0, 0.1), 8px 8px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 -4px #fff, 0 -8px #000, 4px 0 #fff, 4px -4px #000, 8px 0 #000,
+    0 4px #fff, 0 8px #000, -4px 0 #fff, -4px 4px #000, -8px 0 #000,
+    -4px -4px #000, 4px 4px #000, 4px 12px rgba(0, 0, 0, 0.1),
+    12px 4px rgba(0, 0, 0, 0.1), 8px 8px rgba(0, 0, 0, 0.1);
 }
 
 .bubble.large {
-  width: clamp(200px, 360px, 560px  );
-  font-size: clamp(12px, 1vh, 24px);
+  width: clamp(200px, 480px, 760px);
+  font-size: clamp(12px, 1vh, 10rem);
   text-align: left;
   text-transform: uppercase;
+  margin-right: clamp(15%, 30%, 30%);
+  margin-left: clamp(15%, 30%, 30%);
   font-family: "Press Start 2P", cursive;
-
-}
-.bubble.top::after {
-  height: 4px;
-  width: 4px;
-  top: -8px;
-  left: 32px;
-  box-shadow: 0 -4px #000, 0 -8px #000, 0 -12px #000, 0 -16px #000, -4px -12px #000, -8px -8px #000, -12px -4px #000, -4px -4px #fff, -8px -4px #fff, -4px -8px #fff, -4px 0 #fff, -8px 0 #fff, -12px 0 #fff;
 }
 
 .bubble.bottom::after {
   height: 4px;
   width: 4px;
   bottom: -8px;
-  right: 32px;
-  box-shadow: 0 4px #000, 0 8px #000, 0 12px #000, 0 16px #000, -4px 12px #000, -8px 8px #000, -12px 4px #000, -4px 4px #fff, -8px 4px #fff, -4px 8px #fff, -4px 0 #fff, -8px 0 #fff, -12px 0 #fff;
+  right: 23px;
+  box-shadow: 0 4px #000, 0 8px #000, 0 12px #000, 0 16px #000, -4px 12px #000,
+    -8px 8px #000, -12px 4px #000, -4px 4px #fff, -8px 4px #fff, -4px 8px #fff,
+    -4px 0 #fff, -8px 0 #fff, -12px 0 #fff;
 }
 
 @media (max-width: 768px) {
   .hero {
     left: 95%;
-    top:500px;
-    transform: translateX(-50%); /* Centrer horizontalement */
+    top: 500px;
+    transform: translateX(-50%);
+    bottom: 0; /* Centrer horizontalement */
     right: auto; /* Désactiver l'alignement à droite */
   }
-
 }
 
 /* Pour les écrans larges (PC), optionnel si vous avez besoin d'ajustements spécifiques */
 @media (min-width: 769px) {
   .hero {
     right: 0; /* Aligné à droite pour les grands écrans */
-    left: auto; /* Désactiver l'alignement à gauche */
+    left: auto;
+    bottom: 0; /* Désactiver l'alignement à gauche */
   }
   .bubble {
-    margin-right: 10%;
-    width: 10;
+    margin-right: 20%;
+    width: 30%;
     right: 10%; /* Aligné à droite pour les grands écrans */
     left: auto; /* Désactiver l'alignement à gauche */
   }
 }
 
-.generate-btn{
+.generate-btn, form > button{
   margin-top: 20px;
   padding: 20px;
   border-radius: 8px;
-
 }
 
-
-
-.ui-btn-left{
-  border-radius: 20px 0px 0px 0px;
-
-}
-.ui-btn-right{
-  border-radius: 0px 20px 0px 0px;
-
+.circular-progress {
+  margin: 10px;
 }
 
-.circular-progress{
-  margin: 20px 0px;
+.main-container {
+  display: flex;
+  justify-content: center;
+}
+
+form > input {
+  display: block;
+  margin: 10px;
+  margin-left: 0px;
+  padding: 10px;
+  width: 100%;
 }

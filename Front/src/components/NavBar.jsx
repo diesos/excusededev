@@ -1,4 +1,5 @@
 import styled, { css } from 'styled-components'
+import { Link, useLocation } from 'react-router-dom';
 
 const HeadNav = styled.h1`
     font-size: clamp(20px, 4vw, 30px);
@@ -9,23 +10,41 @@ const HeadNav = styled.h1`
 const NavContainer = styled.nav`
 	display: flex;
 	justify-content: space-between;
+	font-family: "Poppins";
+
+`
+const NavBtn = styled.button `
+	background-color: transparent;
+	border-radius: 8px;
+	padding: 10px;
+	color:white;
 
 `
 
 
 
-const Header = ({setAddExcuse}) => {
+const NavBar = ({setAddExcuse}) => {
+
+	if (location.pathname != '/')
+		return;
+
 
 	return(
 		<NavContainer>
 			<HeadNav>
 				Excuse De Dev
 			</HeadNav>
-			<ul>
-				<li><a onClick={(e) => {
+-				<ul>
+				<li>
+					<a onClick={(e) => {
 					e.preventDefault();
 					setAddExcuse(Value => !Value)
-					}}>Ajouter/Générer Une Excuse</a>
+					}}><Link to="/">
+						<NavBtn>
+							Ajouter/Générer Une Excuse
+						</NavBtn>
+						</Link>
+						</a>
 				</li>
 			</ul>
 			</NavContainer>
@@ -33,4 +52,4 @@ const Header = ({setAddExcuse}) => {
 
 }
 
-export default Header
+export default NavBar
