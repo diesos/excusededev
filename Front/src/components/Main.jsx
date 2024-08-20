@@ -69,7 +69,7 @@ const Main = () => {
             sequence={[
               addExcuse
                 ? "Ajoutons une nouvelle excuse !"
-                : "Bonjour, peut-tu m'aider à trouver une excuse ?",
+                : "Bonjour, peux-tu m'aider à trouver une excuse ?",
               3000,
             ]}
             wrapper="span"
