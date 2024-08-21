@@ -1,11 +1,14 @@
+require('dotenv').config()
+
 const express = require("express");
 const app = express();
+const mongoose = require('./config/db')
 const excuseRoute = require("./routes/excusesRoutes");
 
 const excusesDb = require("./excuses.json");
 const cors = require("cors");
 const corsOption = require("./config/corsOption")
-const PORT = 8000;
+const PORT = process.env.PORT ||8080;
 
 app.use(express.json());
 app.use(cors(corsOption));
@@ -13,7 +16,7 @@ app.use("/excuse", excuseRoute);
 
 
 app.get("/", (req, res) => {
-  res.send("Hello world");
+  res.send("API is running...");
 });
 
 app.listen(PORT, () => {

@@ -43,7 +43,7 @@ const Main = () => {
       let newTag;
       do {
         const data = await RandomExcuse();
-        if (data.succes) {
+        if (data.success) {
           newExcuse = data.data.message;
           newTag = data.data.tag;
         } else {
@@ -64,7 +64,7 @@ const Main = () => {
     <>
       <NavBar setAddExcuse={setAddExcuse} />
       <div className="main-container">
-        <div className="bubble shadow large bottom">
+        <div className="bubble shadow large bottom fade-in-bottom">
           <TypeAnimation
             sequence={[
               addExcuse
@@ -98,7 +98,7 @@ const Main = () => {
           />
         </div>
 
-        <img className="hero" src={myImage}></img>
+        <img className="hero fade-in-right" src={myImage}></img>
       </div>
     </>
   );

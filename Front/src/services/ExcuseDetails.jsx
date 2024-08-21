@@ -1,7 +1,8 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
 import { TypeAnimation } from "react-type-animation";
-const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
+import FourZeroFour from "../components/FourZeroFour";
+const API_BASE_URL = 'http://localhost:8000'
 
 const ExcuseDetails = ({ id, excuse, setExcuse }) => {
   const [loading, setLoading] = useState(true);
@@ -26,7 +27,7 @@ const ExcuseDetails = ({ id, excuse, setExcuse }) => {
     return <p>Loading...</p>;
   }
   if (!excuse) {
-    return <p>Pas d&apos;excuse trouvée !</p>;
+    return <FourZeroFour />
   }
 
   return (

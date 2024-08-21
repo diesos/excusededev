@@ -1,12 +1,18 @@
 import {useState} from 'react'
 // import PostExcuse from '../services/addExcuse'
 import axios from 'axios'
-import { green } from '@mui/material/colors'
+import { Link } from 'react-router-dom'
 
 const AddExcuse = () => {
 	const [succesMessage, setSuccesMessage] = useState(null)
 	const [errorMessage, setErrorMessage] = useState(null)
 	const [excuse, setExcuse] = useState(null)
+	const [validTag, setValidTag] = useState(false)
+	const [validMessage, setValidMessage] = useState(false)
+	const [infoMsg, setInfoMsg] = useState('')
+	const [infoMsg2, setInfoMsg2] = useState('')
+
+
 	const [formData, setFormData] = useState({
 		tag: "",
 		message: ""
@@ -19,9 +25,40 @@ const AddExcuse = () => {
 			...formData,
             [name]: value
         })
+		lenChecker()
+	}
+
+
+	const tagLen = formData.tag.length
+	const messageLen = formData.message.length
+
+	const lenChecker = () => {
+
+
+		if (tagLen > 2){
+			setValidTag(true);
+			setInfoMsg("")
+		}
+		else {
+			setValidTag(false)
+			setInfoMsg("4 caractères minimum")
+		}
+		if (messageLen > 2)
+		{
+			setValidMessage(true)
+			setInfoMsg2("")
+		}
+		else {
+			setValidMessage(false)
+			setInfoMsg2("4 caractères minimum")
+		}
+
 	}
 	console.log(formData)
-
+	console.log(tagLen)
+	console.log(messageLen)
+	console.log(validTag)
+	console.log(validMessage)
 	const handleSubmit = async (e) => {
 		e.preventDefault();
 		const data = {
@@ -51,6 +88,7 @@ const AddExcuse = () => {
 	<form style={{marginTop: '20px'}}
 	onSubmit={handleSubmit}>
 		<label htmlFor="tag">Ajouter un titre à votre excuse</label>
+		<p style={{color: 'red'}}>{infoMsg}</p>
 	<input
 		type="text"
 		id="id"
@@ -59,6 +97,8 @@ const AddExcuse = () => {
 		onChange={handleChange}
 	/>
 		<label  htmlFor="message">Ajouter une excuse</label>
+		<p style={{color: 'red'}}>{infoMsg2}</p>
+
 	<input
 		type="text"
 		id="id2"
@@ -66,21 +106,24 @@ const AddExcuse = () => {
 		value={formData.message}
 		onChange={handleChange}
 	/>
-		<button>
+		<button disabled={!validMessage || !validTag ? true : false}>
 			Ajouter une excuse
 		</button>
 		</form>
 		{succesMessage &&
 		(<>
-		<p style={{color: "green"}}>{succesMessage}</p>
-		<p>http_code: {excuse.http_code}</p>
-		<p>Titre: {excuse.tag}</p>
-		<p>Excuse: {excuse.message}</p>
-		</>)}
+			<p style={{color: "green"}}>{succesMessage}</p>
+			<p>http_code: {excuse.http_code}</p>
+			<p>Titre: {excuse.tag}</p>
+			<p>Excuse: {excuse.message}</p>
+
+			<Link to={`/${excuse.http_code}`}><button>Accéder à l'excuse</button></Link>
+		</>
+		)}
 
 		{!succesMessage && errorMessage && (
 			<>
-			<p key={errorMessage} style={{color: "red"}}>Error : {errorMessage}</p>
+			<p key={errorMessage} style={{color: "red"}}>Erreurr : {errorMessage}</p>
 		</>
 		)
 		}

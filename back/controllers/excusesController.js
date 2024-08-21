@@ -1,13 +1,9 @@
-const excuses = require("../excuses.json");
-const fs = require("fs");
-const path = require("path");
+const Excuse = require("../models/excuse.model");
 
 const getExcuse = async (req, res) => {
   const { id } = req.params;
   try {
-    const searchExcuse = excuses.find(
-      (excuse) => excuse.http_code === parseInt(id)
-    );
+    const searchExcuse = await Excuse.findOne({ http_code: parseInt(id) });
     if (!searchExcuse) {
       return res.status(404).send("Pas d'excuse trouvée !");
     }
@@ -26,30 +22,30 @@ const getExcuse = async (req, res) => {
 };
 
 const randomExcuse = async (req, res) => {
-  // Filtre seulement les code http existante
-  const validHttp = excuses.filter((excuses) => excuses.http_code);
-  //Si pas d'excuses, renvoyer erreur 404
-  if (!validHttp) {
-    res.status(404).send("Pas d'excuse trouvée !");
-  }
-  // Après avoir filtrer les http code existante, génération d'un randomIndex
-  const randomIndex = Math.floor(Math.random() * validHttp.length);
-  // Piochage du contenu
-  const randomExcuse = validHttp[randomIndex];
-  console.log(randomExcuse);
   try {
-    const searchExcuseRandom = excuses.find(
-      (excuse) => excuse.http_code === parseInt(randomExcuse)
-    );
+    // Trouver tous les excuses avec un http_code valide
+    const validExcuses = await Excuse.find({ http_code: { $exists: true } });
+
+    if (validExcuses.length === 0) {
+      return res.status(404).send("Pas d'excuse trouvée !");
+    }
+
+    const validHttpCodes = validExcuses.map((excuse) => excuse.http_code);
+
+    const randomIndex = Math.floor(Math.random() * validHttpCodes.length);
+    const randomHttpCode = validHttpCodes[randomIndex];
+
+    const randomExcuse = await Excuse.findOne({ http_code: randomHttpCode });
+
     res.status(200).send({
-      succes: true,
-      message: "Excuse trouvé",
+      success: true,
+      message: "Excuse trouvée",
       data: randomExcuse,
     });
   } catch (error) {
     res.status(500).json({
-      succes: false,
-      message: "Aucune occurence trouvée",
+      success: false,
+      message: "Erreur lors de la recherche de l'excuse",
       error: error.message,
     });
   }
@@ -58,41 +54,28 @@ const randomExcuse = async (req, res) => {
 const postExcuse = async (req, res) => {
   try {
     const { tag, message } = req.body;
-    const filePath = path.join(__dirname, "../excusestest.json");
-    const data = fs.readFileSync(filePath, "utf-8");
-    const object = JSON.parse(data);
-    const length = object.length;
-    const index = length > 0 ? object[length - 1].http_code : 700;
-
     if (!tag || !message) {
       return res.status(400).send("Les champs Tag et Message sont requis");
     }
-    const newData = {
-      http_code: index + 1,
-      message: message,
-      tag: tag,
-    };
-    const newData2 = object.push(newData);
-    JSON.stringify(object);
-    fs.writeFileSync(
-      filePath,
-      JSON.stringify(object, null, 2),
-      "utf-8",
-      (err) => {
-        if (err) {
-          throw err;
-        }
-        console.log("Excuse ajoutée avec succès!");
-      }
-    );
+    const lastExcuse = await Excuse.findOne().sort({ http_code: -1 });
+    const nextHttpCode = lastExcuse ? lastExcuse.http_code + 1 : 700;
+
+    const newExcuse = new Excuse({
+      http_code: nextHttpCode,
+      tag,
+      message,
+    });
+
+    await newExcuse.save();
     res.status(201).send({
-      succes: true,
+      success: true,
       message: "Excuse ajoutée avec succès",
-      data: newData,
+      data: newExcuse,
     });
   } catch (error) {
     console.error("Error : ", error);
     res.status(500).send("Erreur lors de la création d'excuse.");
   }
 };
+
 module.exports = { getExcuse, randomExcuse, postExcuse };
