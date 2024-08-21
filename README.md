@@ -22,32 +22,28 @@ Installation du Backend
 
     ```bash
 
-    `https://github.com/diesos/excusededev
-    cd excusededev`
+    https://github.com/diesos/excusededev
+    cd excusededev
     ```
 
 2.  **Installer les Dépendances**
 
     Installez les dépendances nécessaires avec npm ou yarn :
 
-    bash
+    ```bash
 
-    `npm install`
-
-    ou
-
-    bash
-
-    `yarn install`
+    npm install
+    ```
 
 3.  **Configurer les Variables d'Environnement**
 
     Créez un fichier `.env` à la racine du projet et ajoutez les variables d'environnement nécessaires :
 
-    env
-
-    `MONGO_URL=
-    PORT=8000`
+   
+    ```env
+    MONGO_URL=
+    PORT=8000
+    ```
 
     -   `MONGO_URL` : URL de connexion à votre base de données MongoDB.
     -   `PORT` : Port sur lequel le serveur Node.js sera accessible.
@@ -56,15 +52,16 @@ Installation du Backend
 
     Pour démarrer le serveur en mode développement, utilisez :
 
-    bash
-
-    `npm run dev`
+```bash
+    npm run dev
+```
 
     Pour démarrer le serveur en mode production :
 
-    bash
+    ```bash
 
-    `npm start`
+    npm start
+    ```
 
 
 Installation du Frontend
@@ -74,37 +71,40 @@ Installation du Frontend
 
     Accéder au dossier front :
 
-    bash
-
-    `cd` pour revenir à la racine du projet
-    `cd Front`
+   ```bash
+    cd  // pour revenir à la racine du projet
+    cd Front
+```
 
 
 2.  **Installer les Dépendances**
 
     Installez les dépendances nécessaires avec npm ou yarn :
 
-    bash
-
-    `npm install`
+    ```bash
+    npm install
+    ```
 
 
 3.  **Configurer les Variables d'Environnement**
 
     Créez un fichier `.env` à la racine du projet frontend et ajoutez les variables d'environnement nécessaires. Par exemple :
 
-    env
+    ```env
 
-    `VITE_API_URL=http://localhost:8000`
+    VITE_API_URL=http://localhost:8000
+    ```
 
     -   `VITE_API_URL` : URL de votre serveur backend.
+
+      
 4.  **Démarrer l'Application**
 
     Pour démarrer l'application en mode développement :
 
-    bash
-
-    `npm run dev`
+    ```bash
+    npm run dev
+    ```
 
 
 Détails du Projet
