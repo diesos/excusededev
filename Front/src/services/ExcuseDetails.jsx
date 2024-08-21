@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import { TypeAnimation } from "react-type-animation";
 import FourZeroFour from "../components/FourZeroFour";
-const API_BASE_URL = 'http://localhost:8000'
+const API_BASE_URL = 'https://excusededev.onrender.com'
 
 const ExcuseDetails = ({ id, excuse, setExcuse }) => {
   const [loading, setLoading] = useState(true);
