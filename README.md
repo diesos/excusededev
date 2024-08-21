@@ -24,6 +24,7 @@ Installation du Backend
 
     git clone https://github.com/diesos/excusededev
     cd excusededev
+    cd back
     ```
 
 2.  **Installer les Dépendances**
@@ -50,17 +51,12 @@ Installation du Backend
 
 4.  **Démarrer le Serveur**
 
-    Pour démarrer le serveur en mode développement, utilisez :
+    Pour démarrer le serveur back-end, utilisez :
 
     ```bash
-    npm run dev
+    node server.js
     ```
 
-    Pour démarrer le serveur en mode production :
-
-    ```bash
-    npm start
-    ```
 
 
 Installation du Frontend
