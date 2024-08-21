@@ -20,7 +20,7 @@ Installation du Backend
 
     Commencez par cloner le dépôt du projet :
 
-    bash
+    bash'''
 
     `https://github.com/diesos/excusededev
     cd excusededev`
