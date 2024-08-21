@@ -1,11 +1,12 @@
 const allowedOrigins = [
-  "https://diesos-excusededev.netlify.app/",
-  "https://main--diesos-excusededev.netlify.app/",
+  "https://diesos-excusededev.netlify.app",
+  "https://main--diesos-excusededev.netlify.app",
   "http://localhost:5173",
 ];
 
 const corsOptions = {
   origin: (origin, callback) => {
+    console.log("Origin :", origin)
     if (!origin || allowedOrigins.includes(origin)) {
       callback(null, true);
     } else {
