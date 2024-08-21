@@ -24,7 +24,7 @@ Installation du Backend
 
     ```bash
 
-    git clone https://github.com/diesos/excusededev
+    git clone https://github.com/diesos/excusededev.git
     cd excusededev
     cd back
     ```
