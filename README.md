@@ -142,7 +142,41 @@ Déploiement
 -   **Backend** : Déployé sur Vercel. Configurez les variables d'environnement dans le panneau de gestion de Vercel.
 
 
+Techno & Feedback personnel + Rétrospection
+----------
+
+Technologies utilisées :
+
+Front-end : React
+J'ai choisi React pour le développement du front-end en raison de sa rapidité et de sa flexibilité. React permet une expérience utilisateur fluide grâce à son approche de rendu côté client (CSR), et j'apprécie sa capacité à gérer les états de manière efficace.
+
+Back-end : Node.js
+Pour le back-end, j'ai opté pour Node.js afin de maintenir une uniformité dans le langage de programmation utilisé tout au long du projet. Utiliser JavaScript des deux côtés du développement permet de simplifier le code et de réduire la complexité en évitant de jongler avec plusieurs langages.
+
+Base de données : MongoDB
+Initialement, j'avais envisagé de lire les données directement à partir d'un fichier JSON. Cependant, j'ai rencontré des problèmes de mise à jour en temps réel, car le serveur ne récupérait pas les nouvelles excuses sans un redémarrage. Bien qu'il existe des techniques pour gérer le cache en Node.js, cela ne semblait pas optimal. J'ai donc choisi MongoDB pour une solution plus robuste et évolutive.
+
+Déploiement : Netlify et Render.com
+
+Netlify a été utilisé pour déployer le front-end en React, offrant une intégration continue et un déploiement simplifié.
+Render.com héberge le back-end en Node.js, permettant une gestion fluide des requêtes et des opérations serveur.
+Problèmes rencontrés :
+
+Un des principaux défis a été la gestion des requêtes entre le front-end et le back-end, nécessitant une configuration précise des adresses IP pour permettre la communication inter-services. Pour résoudre cela, j'ai :
+
+Whitelisté l'adresse IP du back-end sur MongoDB.
+Configuré les options CORS sur Render.com pour autoriser les requêtes en provenance du front-end.
+Autres considérations :
+
+Redux : Bien que Redux soit une option puissante pour la gestion des états complexes, j'ai jugé que l'utilisation du state management de React (avec useState et useEffect) était suffisante pour les besoins de ce projet. Cela permet de garder le code plus léger et plus facile à maintenir pour cette application spécifique.
+
+CSS : J'ai exploré les fonctionnalités CSS telles que clamp(), qui se sont révélées très intéressantes pour créer des mises en page réactives. Cette découverte enrichit mes compétences en design et je compte utiliser ces techniques dans mes futurs projets.
+
+J'ai vraiment apprécié le processus de développement, des recherches aux résolutions de problèmes, et je suis heureux du résultat final. Merci pour votre attention, et je suis à votre disposition pour toute question !
+
 Conclusion
 ----------
 
 Merci d'avoir exploré **Excuses de Dev** ! C'était un projet amusant et utile pour revoir mes compétences en développement. 🚀
+
+
