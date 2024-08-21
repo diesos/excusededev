@@ -67,7 +67,7 @@ const AddExcuse = () => {
 		}
 		console.log("handleSubmit")
 		try{
-				const res = await axios.post("http://localhost:8000/excuse/create/", data)
+				const res = await axios.post("https://excusededev.onrender.com", data)
 				setSuccesMessage(res.data.message );
 				setExcuse(res.data.data)
 
