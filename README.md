@@ -18,11 +18,11 @@ Installation du Backend
 
 1.  **Cloner le dépôt**
 
-    Commencez par cloner le dépôt du projet :
+    Ouvrez votre Terminal, et commencez par cloner le dépôt du projet :
 
     ```bash
 
-    https://github.com/diesos/excusededev
+    git clone https://github.com/diesos/excusededev
     cd excusededev
     ```
 
