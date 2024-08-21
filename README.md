@@ -3,7 +3,7 @@ Excuses de Dev
 
 Bienvenue dans le projet **Excuses de Dev** ! 🎉 Ce projet est conçu pour générer des excuses amusantes et créatives, parfaites pour faire patienter les utilisateurs avec une touche d'humour. Ce guide vous expliquera comment installer, configurer et exécuter le projet, que ce soit pour le développement local ou pour le déploiement.
 
-`LIVE DEMO`: https://diesos-excusededev.netlify.app
+`✨LIVE DEMO ✨`: https://diesos-excusededev.netlify.app
 
 Prérequis
 ---------
