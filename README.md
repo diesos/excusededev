@@ -52,14 +52,13 @@ Installation du Backend
 
     Pour démarrer le serveur en mode développement, utilisez :
 
-```bash
+    ```bash
     npm run dev
-```
+    ```
 
     Pour démarrer le serveur en mode production :
 
     ```bash
-
     npm start
     ```
 
@@ -74,7 +73,7 @@ Installation du Frontend
    ```bash
     cd  // pour revenir à la racine du projet
     cd Front
-```
+   ```
 
 
 2.  **Installer les Dépendances**
