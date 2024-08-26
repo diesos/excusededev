@@ -129,26 +129,32 @@ ul {
   margin-left: clamp(15%, 30%, 30%);
   font-family: "Press Start 2P", cursive;
 }
+.bubble.large {
+  width: clamp(200px, 480px, 760px);
+  font-size: clamp(1vw, 1vh, 10rem);
+  text-align: left;
+  text-transform: uppercase;
+  margin-right: clamp(15%, 30%, 30%);
+  margin-left: clamp(15%, 30%, 30%);
+  font-family: "Press Start 2P", cursive;
+  @media(max-width:450px){
+     width: clamp(80vw, 5vw, 200px);
+  }
+  @media (min-width: 500px) {
+      width: clamp(50vw, 5vw, 200px);
+    }
 
-.bubble.bottom::after {
-  height: 4px;
-  width: 4px;
-  bottom: -8px;
-  right: 23px;
-  box-shadow: 0 4px #000, 0 8px #000, 0 12px #000, 0 16px #000, -4px 12px #000,
-    -8px 8px #000, -12px 4px #000, -4px 4px #fff, -8px 4px #fff, -4px 8px #fff,
-    -4px 0 #fff, -8px 0 #fff, -12px 0 #fff;
-}
+  }
 
-@media (max-width: 768px) {
+
+
+/* @media (max-width: 768px) {
   .hero {
     left: 95%;
     top: 500px;
     transform: translateX(-50%);
     bottom: 0; /* Centrer horizontalement */
-    right: auto; /* Désactiver l'alignement à droite */
-  }
-}
+
 
 /* Pour les écrans larges (PC), optionnel si vous avez besoin d'ajustements spécifiques */
 @media (min-width: 769px) {
@@ -164,6 +170,13 @@ ul {
     left: auto; /* Désactiver l'alignement à gauche */
   }
 }
+
+/* @media (max-witdh: 450px){
+  .hero{
+    height: 3em;
+    width: 3em;
+  }
+} */
 
 .generate-btn, form > button{
   margin-top: 20px;
@@ -213,3 +226,20 @@ form > input {
   }
 }
 
+
+.bubble.bottom::after {
+
+  height: 4px;
+  width: 4px;
+  bottom: -8px;
+  right: 23px;
+  box-shadow: 0 4px #000, 0 8px #000, 0 12px #000, 0 16px #000, -4px 12px #000,
+    -8px 8px #000, -12px 4px #000, -4px 4px #fff, -8px 4px #fff, -4px 8px #fff,
+    -4px 0 #fff, -8px 0 #fff, -12px 0 #fff;
+}
+
+@media (max-width: 769px) {
+  .bubble.bottom::after {
+    right: 200px;
+  }
+}
