@@ -123,7 +123,7 @@ const AddExcuse = () => {
 
 		{!succesMessage && errorMessage && (
 			<>
-			<p key={errorMessage} style={{color: "red"}}>Erreurr : {errorMessage}</p>
+			<p key={errorMessage} style={{color: "red"}}>Erreur : {errorMessage}</p>
 		</>
 		)
 		}
